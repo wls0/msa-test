@@ -2,6 +2,10 @@
 
 1. start.sh 를 실행시키고 localhost:3000 에서 사용하면 됩니다.
 
+```bash
+$ sh start.sh
+```
+
 ```
 Post /auth/join : 회원가입
 Post /auth/login : 로그인
@@ -26,7 +30,3 @@ Get /event/reward/request/manager : 이벤트 보상 요청 조회 (관리자)
 7. early return 방식으로 로직을 작성하여 로직을 이해하기 쉽게 작성했습니다.
 8. 재화나 이벤트 타입은 계속 늘어난다고 판단되어서 서버 로직으로는 enum 형태로 데이터를 타입을 작성했습니다.
 9. .env는 제출을 위해서 gitignore를 하지않았습니다.
-
-```bash
-$ sh start.sh
-```
