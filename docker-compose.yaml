@@ -1,0 +1,66 @@
+services:
+  mongo:
+    image: mongo:8.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    command: mongod --bind_ip_all
+    volumes:
+      - ./mongo:/data/db
+    networks:
+      - backend
+
+  gateway:
+    build:
+      context: ./gateway-server
+      dockerfile: Dockerfile
+    env_file:
+      - ./gateway-server/config/.env
+    ports:
+      - "3000:3000"
+    command: pnpm run start:debug
+    volumes:
+      - ./gateway-server/:/app/
+      - /app/node_modules
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+  auth:
+    build:
+      context: ./auth-server
+      dockerfile: Dockerfile
+    env_file:
+      - ./auth-server/config/.env
+    ports:
+      - "3001:3001"
+    command: pnpm run start:debug
+    volumes:
+      - ./auth-server/:/app/
+      - /app/node_modules
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+  event:
+    build:
+      context: ./event-server
+      dockerfile: Dockerfile
+    env_file:
+      - ./event-server/config/.env
+    ports:
+      - "3002:3002"
+    command: pnpm run start:debug
+    volumes:
+      - ./event-server/:/app/
+      - /app/node_modules
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+networks:
+  backend:
+    external: true
