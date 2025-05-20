@@ -2,6 +2,7 @@
 
 1. start.sh 를 실행시키고 localhost:3000 에서 사용하면 됩니다.
 
+```
 Post /auth/join : 회원가입
 Post /auth/login : 로그인
 Post /role : 권한 수정
@@ -14,6 +15,7 @@ Post /event/reward : 이벤트 보상 등록
 Post /event/reward/request : 이벤트 보상 요청(유저)
 Get /event/reward/request : 이벤트 보상 요청 조회 (유저)
 Get /event/reward/request/manager : 이벤트 보상 요청 조회 (관리자)
+```
 
 1. 게이트 웨이 서버 조건에 맞게 토큰, 권한 작업을 하고 라우팅이 가능하도록 작업을 진행했습니다.
 2. auth 서버는 유저 로그인, 가입, 권한 계정에 대한 권한 관리를 위한 서버로 작업을 진행했습니다.
